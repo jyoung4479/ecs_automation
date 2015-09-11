@@ -8,14 +8,16 @@
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Heading |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
-|    | ${element} | Catenate | SEPARATOR= | jquery=h4.panel-title:contains(' | ${value} | ') |
-|    | kw Wait Until Element Visible | ${element} |
+|    | kw Hide StickyHeader |
+|    | kw Wait Until Element Visible | jquery=[data-test-id='tasks-title'] |
+|    | kw Wait Until Element Contains | jquery=[data-test-id='tasks-title'] | ${value} |
 
 | kw Verify Grid Column Headings |
 |    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Grid Column Headings |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
+|    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=h4:contains('Tasks') |
 |    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4']:contains('Tasks') th[data-title='Task'] |
 |    | kw Wait Until Element Contains | jquery=div[scroll-target='AppNode4']:contains('Tasks') th[data-title='Task'] | Task |
@@ -32,6 +34,7 @@
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
+|    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=[ng-bind*='description'] |
 |    | kw Wait Until Element Contains | jquery=[ng-bind*='description'] | ${value} |
 
@@ -41,6 +44,7 @@
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
+|    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=[ng-bind*='note'] |
 |    | kw Wait Until Element Contains | jquery=[ng-bind*='note'] | ${value} |
 
@@ -50,8 +54,9 @@
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
-|    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('2/26/16') |
-|    | kw Wait Until Element Contains | jquery=div[scroll-target='AppNode4'] td:contains('2/26/16') | ${value} |
+|    | kw Hide StickyHeader |
+|    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('${value}') |
+|    | kw Wait Until Element Contains | jquery=div[scroll-target='AppNode4'] td:contains('${value}') | ${value} |
 
 | kw Verify Task Scheduled Date |
 |    | [Arguments] | ${value} |
@@ -59,5 +64,6 @@
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |
-|    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('8/7/15') |
-|    | kw Wait Until Element Contains | jquery=div[scroll-target='AppNode4'] td:contains('8/7/15') | ${value} |
+|    | kw Hide StickyHeader |
+|    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('${value}') |
+|    | kw Wait Until Element Contains | jquery=div[scroll-target='AppNode4'] td:contains('${value}') | ${value} |

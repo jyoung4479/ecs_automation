@@ -21,7 +21,6 @@
 |    | kw Input Text | ${element} | ${password} |
 
 | kw Click Login Button |
-|    | [Arguments] | ${password} |
 |    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Click Login Button |
 |    | kw Log Keyword Status |
 |    | kw Wait For Top Frame To Load |

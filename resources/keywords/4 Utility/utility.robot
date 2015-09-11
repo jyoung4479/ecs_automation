@@ -181,7 +181,7 @@
 |    | ... | \tElement as jQuery:\t${element_as_js} | \tElement:\t${element} | \tElement Value Found: ${actual} | \tElement Value Expected: ${expected} |
 |    | Should Be True | '${actual}' == '${expected}' | ${message_tmp} |
 
-| kw Case Setup |
+| kw Case Setup - Open Browser |
 |    | kw Open Browser To URL | browser=${var_BROWSER} |
 |    | Set Log Level | ${var_LOG_LEVEL} |
 |    | kw Log Message | ============================================ | level=WARN |

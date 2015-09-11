@@ -6,6 +6,7 @@
 |    | [Arguments] | ${username} | ${password} |
 |    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Login |
 |    | kw Log Keyword Status |
-|    | Go To | http://192.168.1.199:2915 |
+|    | Go To | http://192.168.1.33:2915 |
 |    | kw Enter Username | ${var_USERNAME} |
 |    | kw Enter Password | ${var_PASSWORD} |
+|    | kw Click Login Button |
