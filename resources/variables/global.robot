@@ -4,3 +4,11 @@
 | ${account_id}  | ${EMPTY} |
 | ${var_USERNAME} | beverly |
 | ${var_PASSWORD} | password |
+| ${var_BROWSER} | chrome |
+| ${var_WINDOW_NAME} | main |
+| ${var_DEBUG_KW_TOPLEVEL} | Default |
+| ${var_DEBUG_KW_HIGHLEVEL} | Default |
+| ${var_DEBUG_KW_LOWLEVEL} | Default |
+| ${var_DEBUG_KW_UTILITYLEVEL} | Default |
+| ${var_LOG_LEVEL} | WARN |
+| ${var_USE_DEBUG_LOGGING} | true |

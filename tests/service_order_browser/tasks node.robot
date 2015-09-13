@@ -1,9 +1,8 @@
 | *** Settings *** |
-| Test Setup     | kw Case Setup - Open Browser |
+| Test Setup     | kw Case Setup - Open Browser | ${var_BROWSER} | ${var_LOG_LEVEL} |
 | Test Teardown  | kw Case Teardown |
-| Resource       | ../../resources/keywords/2 High_Level/Service Order.robot |
-| Resource       | ../../resources/keywords/2 High_Level/Login Page.robot |
-| Resource       | ../../resources/keywords/2 High_Level/tasks.robot |
+| Resource       | ../../resources/keywords/service_order_browser/service_order.robot |
+| Resource       | ../../resources/keywords/login_page/login.robot |
 
 | *** Test Cases *** |
 | Tasks Heading |

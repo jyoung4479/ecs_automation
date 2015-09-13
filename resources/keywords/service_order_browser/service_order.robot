@@ -1,5 +1,5 @@
 | *** Settings *** |
-| Resource       | ../4 Utility/main.robot |
+| Resource       | ../utility/utility.robot |
 
 | *** Keywords *** |
 | kw Verify Tasks Heading |

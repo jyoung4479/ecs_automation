@@ -1,15 +1,7 @@
 | *** Settings *** |
-| Resource       | imports.robot |
-
-| *** Variables *** |
-| ${var_BROWSER} | chrome |
-| ${var_WINDOW_NAME} | main |
-| ${var_DEBUG_KW_TOPLEVEL} | Default |
-| ${var_DEBUG_KW_HIGHLEVEL} | Default |
-| ${var_DEBUG_KW_LOWLEVEL} | Default |
-| ${var_DEBUG_KW_UTILITYLEVEL} | Default |
-| ${var_LOG_LEVEL} | WARN |
-| ${var_USE_DEBUG_LOGGING} | true |
+| Library        | Selenium2Library |
+| Library        | ../../lib/helper.py |
+| Resource       | ../../variables/global.robot |
 
 | *** Keywords *** |
 | kw Log Message |
@@ -19,39 +11,36 @@
 |    | Set Log Level | ${var_LOG_LEVEL} |
 
 | kw Log Keyword Status |
-|    | [Arguments] | ${level}=INFO |
+|    | [Arguments] | ${log_level}=INFO |
 |    | ${current_keyword} | Catenate | SEPARATOR=${SPACE}->${SPACE} | ${var_DEBUG_KW_TOPLEVEL} | ${var_DEBUG_KW_HIGHLEVEL} | ${var_DEBUG_KW_LOWLEVEL} |
 |    | ${status_message} | Catenate | SEPARATOR=\t | Now Running: | ${current_keyword} |
 |    | Run Keyword If | '${var_USE_DEBUG_LOGGING}' == 'true' | kw Log Message | ${SPACE} | #adds extra line in output to make it easier to read |
-|    | kw Log Message | ${status_message} | level=${level} |
+|    | kw Log Message | ${status_message} | ${log_level} |
 
 | kw Log Keyword Failed |
+|    | [Arguments] | ${log_level}=WARN |
 |    | ${current_keyword} | Catenate | SEPARATOR=${SPACE}->${SPACE} | ${var_DEBUG_KW_TOPLEVEL} | ${var_DEBUG_KW_HIGHLEVEL} | ${var_DEBUG_KW_LOWLEVEL} |
 |    | ${failure_message} | Catenate | SEPARATOR=\t | \tKEYWORD FAILED WHILE RUNNING: | ${current_keyword} |
-|    | kw Log Message | ${failure_message} | level=${level} |
+|    | kw Log Message | ${failure_message} | ${log_level} |
 
 | kw Log Test Info |
-|    | [Arguments] | ${service_order_id} |
+|    | [Arguments] | ${service_order_id} | ${log_level}=WARN |
 |    | ${test_type_message} | Set Variable | Test: ${TEST_NAME} |
 |    | ${url_message} | Set Variable | Service Order Url: http://192.168.1.199:2915/serviceorderbrowser/${service_order_id} |
 |    | ${service_order_id_message} | Set Variable | Service Order ID: ${service_order_id} |
 |    | ${test_info_message} | Catenate | SEPARATOR=\n | ${test_type_message} | ${url_message} | ${service_order_id_message} |
-|    | kw Log Message | ${test_info_message} | level=WARN |
+|    | kw Log Message | ${test_info_message} | ${log_level} |
 
 | kw Open Browser To URL |
 |    | [Arguments] | ${browser}=chrome | ${url}=http://www.google.com |
 |    | ${browserIndex} | Open Browser | ${url} | browser=${browser} |
 |    | Run Keyword and Ignore Error | Maximize Browser Window |
-|    | Set Selenium Speed | 0 s |
-|    | Set Browser Implicit Wait | 120 s |
-|    | Set Selenium Implicit Wait | 120 s |
-|    | Set Selenium Timeout | 120 s |
-|    | Register Keyword To Run On Failure | kw Log Keyword Failed |
 |    | [Return] | ${browserIndex} |
 
 | kw Wait For Top Frame To Load |
 |    | [Arguments] | ${timeout}=2 min | ${retry_interval}=5 s |
-|    | kw Select Window By Name | ${var_WINDOW_NAME} |
+|    | ${window} | Set Variable | ${var_WINDOW_NAME} |
+|    | kw Select Window By Name | ${window} |
 |    | Unselect Frame |
 |    | kw Wait For Ajax |
 |    | kw Wait Until Overlay Not Visible |
@@ -67,7 +56,8 @@
 |    | Register Keyword To Run On Failure | ${original_failure_keyword} |
 
 | kw Wait Until Overlay Not Visible |
-|    | ${overlay_exists_on_page} | Execute Javascript | return jQuery("#appStickyHeader").length |
+|    | [Arguments] | @{overlay_locators} |
+|    | ${overlays_on_page} | Execute Javascript | return jQuery("#appStickyHeader").length |
 |    | Run Keyword If | ${overlay_exists_on_page} > 0 | kw Wait Until Element Not Visible | jquery=#appStickyHeader |
 
 | kw Wait Until Element Exists |
@@ -182,19 +172,26 @@
 |    | Should Be True | '${actual}' == '${expected}' | ${message_tmp} |
 
 | kw Case Setup - Open Browser |
-|    | kw Open Browser To URL | browser=${var_BROWSER} |
-|    | Set Log Level | ${var_LOG_LEVEL} |
-|    | kw Log Message | ============================================ | level=WARN |
+|    | [Arguments] | ${browser} | ${log_level} |
+|    | kw Open Browser To URL | ${browser} |
+|    | Set Log Level | ${log_level} |
+|    | Set Selenium Speed | 0 s |
+|    | Set Browser Implicit Wait | 120 s |
+|    | Set Selenium Implicit Wait | 120 s |
+|    | Set Selenium Timeout | 120 s |
+|    | Register Keyword To Run On Failure | kw Log Keyword Failed |
+|    | kw Log Message | ============================================ | ${log_level} |
 
 | kw Case Teardown |
-|    | Set Log Level | WARN |
+|    | [Arguments] | ${log_level} |
+|    | Set Log Level | ${log_level} |
 |    | ${message_tmp} | Catenate | SEPARATOR=${SPACE}->${SPACE} | ${var_DEBUG_KW_TOPLEVEL} | ${var_DEBUG_KW_HIGHLEVEL} | ${var_DEBUG_KW_LOWLEVEL} |
-|    | Run Keyword If Test Failed | kw Log Message | ----------> KEYWORD RUNNING WHEN FAILURE OCCURED ----------> \t${message_tmp} | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | ----------> KEYWORD RUNNING WHEN FAILURE OCCURED ----------> \t${message_tmp} | ${log_level} |
 |    | ${screenshot_filename} | Catenate | SEPARATOR=_ | ${SUITE_NAME} | ${TEST_NAME} | ${TEST_STATUS} |
 |    | Run Keyword If Test Failed | Capture Page Screenshot | ${screenshot_filename}.png |
-|    | Run Keyword If Test Failed | kw Log Message | ----------> SCREENSHOT OF FAILURE ----------> \ ${OUTPUT_DIR}\\${screenshot_filename}.png | level=WARN |
-|    | kw Log Message | ====>\t${TEST_NAME}\t->\t${TEST_STATUS}\t<==== | level=WARN |
-|    | kw Log Message | ============================================ | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | ----------> SCREENSHOT OF FAILURE ----------> \ ${OUTPUT_DIR}\\${screenshot_filename}.png | ${log_level} |
+|    | kw Log Message | ====>\t${TEST_NAME}\t->\t${TEST_STATUS}\t<==== | ${log_level} |
+|    | kw Log Message | ============================================ | ${log_level} |
 |    | Run Keyword And Continue On Failure | Close All Browsers |
 
 | kw Hide StickyHeader |
