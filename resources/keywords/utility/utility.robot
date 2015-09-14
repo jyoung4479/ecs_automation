@@ -58,7 +58,7 @@
 | kw Wait Until Overlay Not Visible |
 |    | [Arguments] | @{overlay_locators} |
 |    | ${overlays_on_page} | Execute Javascript | return jQuery("#appStickyHeader").length |
-|    | Run Keyword If | ${overlay_exists_on_page} > 0 | kw Wait Until Element Not Visible | jquery=#appStickyHeader |
+|    | Run Keyword If | ${overlays_on_page} > 0 | Wait Until Element Is Not Visible | jquery=#appStickyHeader |
 
 | kw Wait Until Element Exists |
 |    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
@@ -171,29 +171,6 @@
 |    | ... | \tElement as jQuery:\t${element_as_js} | \tElement:\t${element} | \tElement Value Found: ${actual} | \tElement Value Expected: ${expected} |
 |    | Should Be True | '${actual}' == '${expected}' | ${message_tmp} |
 
-| kw Case Setup - Open Browser |
-|    | [Arguments] | ${browser} | ${log_level} |
-|    | kw Open Browser To URL | ${browser} |
-|    | Set Log Level | ${log_level} |
-|    | Set Selenium Speed | 0 s |
-|    | Set Browser Implicit Wait | 120 s |
-|    | Set Selenium Implicit Wait | 120 s |
-|    | Set Selenium Timeout | 120 s |
-|    | Register Keyword To Run On Failure | kw Log Keyword Failed |
-|    | kw Log Message | ============================================ | ${log_level} |
-
-| kw Case Teardown |
-|    | [Arguments] | ${log_level} |
-|    | Set Log Level | ${log_level} |
-|    | ${message_tmp} | Catenate | SEPARATOR=${SPACE}->${SPACE} | ${var_DEBUG_KW_TOPLEVEL} | ${var_DEBUG_KW_HIGHLEVEL} | ${var_DEBUG_KW_LOWLEVEL} |
-|    | Run Keyword If Test Failed | kw Log Message | ----------> KEYWORD RUNNING WHEN FAILURE OCCURED ----------> \t${message_tmp} | ${log_level} |
-|    | ${screenshot_filename} | Catenate | SEPARATOR=_ | ${SUITE_NAME} | ${TEST_NAME} | ${TEST_STATUS} |
-|    | Run Keyword If Test Failed | Capture Page Screenshot | ${screenshot_filename}.png |
-|    | Run Keyword If Test Failed | kw Log Message | ----------> SCREENSHOT OF FAILURE ----------> \ ${OUTPUT_DIR}\\${screenshot_filename}.png | ${log_level} |
-|    | kw Log Message | ====>\t${TEST_NAME}\t->\t${TEST_STATUS}\t<==== | ${log_level} |
-|    | kw Log Message | ============================================ | ${log_level} |
-|    | Run Keyword And Continue On Failure | Close All Browsers |
-
 | kw Hide StickyHeader |
 |    | [Arguments] | ${timeout}=2 min | ${retry_interval}=5 s |
 |    | kw Wait For Top Frame To Load |
@@ -205,3 +182,15 @@
 |    | kw Wait For Top Frame To Load |
 |    | Execute Javascript | window.jQuery("#appStickyHeader").show() |
 |    | kw Wait Until Element Visible | jquery=#appStickyHeader |
+
+| kw Case Teardown |
+|    | [Arguments] | ${log_level}=WARN |
+|    | Comment | Set Log Level | ${log_level} |
+|    | Comment | ${message_tmp} | Catenate | SEPARATOR=${SPACE}->${SPACE} | ${var_DEBUG_KW_TOPLEVEL} | ${var_DEBUG_KW_HIGHLEVEL} | ${var_DEBUG_KW_LOWLEVEL} |
+|    | Comment | Run Keyword If Test Failed | kw Log Message | ----------> KEYWORD RUNNING WHEN FAILURE OCCURED ----------> \t${message_tmp} | ${log_level} |
+|    | Comment | ${screenshot_filename} | Catenate | SEPARATOR=_ | ${SUITE_NAME} | ${TEST_NAME} | ${TEST_STATUS} |
+|    | Comment | Run Keyword If Test Failed | Capture Page Screenshot | ${screenshot_filename}.png |
+|    | Comment | Run Keyword If Test Failed | kw Log Message | ----------> SCREENSHOT OF FAILURE ----------> \ ${OUTPUT_DIR}\\${screenshot_filename}.png | ${log_level} |
+|    | Comment | kw Log Message | ====>\t${TEST_NAME}\t->\t${TEST_STATUS}\t<==== | ${log_level} |
+|    | Comment | kw Log Message | ============================================ | ${log_level} |
+|    | Run Keyword And Continue On Failure | Close All Browsers |

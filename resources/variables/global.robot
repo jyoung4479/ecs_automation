@@ -11,4 +11,5 @@
 | ${var_DEBUG_KW_LOWLEVEL} | Default |
 | ${var_DEBUG_KW_UTILITYLEVEL} | Default |
 | ${var_LOG_LEVEL} | WARN |
-| ${var_USE_DEBUG_LOGGING} | true |
+| ${var_USE_DEBUG_LOGGING} | false |
+| ${var_URL}     | http://192.168.1.33:2915 |

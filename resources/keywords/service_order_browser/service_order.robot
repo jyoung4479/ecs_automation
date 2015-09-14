@@ -2,20 +2,23 @@
 | Resource       | ../utility/utility.robot |
 
 | *** Keywords *** |
+| kw Go To Service Order |
+|    | [Arguments] | ${service_order_id} |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Heading |
+|    | kw Wait For Top Frame To Load |
+|    | Go To | ${var_URL}/serviceorderbrowser/${service_order_id} |
+|    | kw Wait For Top Frame To Load |
+
 | kw Verify Tasks Heading |
 |    | [Arguments] | ${value} |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Heading |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Heading |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=[data-test-id='tasks-title'] |
 |    | kw Wait Until Element Contains | jquery=[data-test-id='tasks-title'] | ${value} |
 
 | kw Verify Grid Column Headings |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Grid Column Headings |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Grid Column Headings |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=h4:contains('Tasks') |
@@ -30,9 +33,7 @@
 
 | kw Verify Task Name |
 |    | [Arguments] | ${value} |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=[ng-bind*='description'] |
@@ -40,9 +41,7 @@
 
 | kw Verify Task Note |
 |    | [Arguments] | ${value} |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Note |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=[ng-bind*='note'] |
@@ -50,9 +49,7 @@
 
 | kw Verify Task Completion Date |
 |    | [Arguments] | ${value} |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Completion Date |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('${value}') |
@@ -60,9 +57,7 @@
 
 | kw Verify Task Scheduled Date |
 |    | [Arguments] | ${value} |
-|    | Set Test Variable | ${var_DEBUG_KW_HIGHLEVEL} | Tasks Node |
-|    | Set Test Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Name |
-|    | kw Log Keyword Status |
+|    | Set Global Variable | ${var_DEBUG_KW_LOWLEVEL} | Verify Task Scheduled Date |
 |    | kw Wait For Top Frame To Load |
 |    | kw Hide StickyHeader |
 |    | kw Wait Until Element Visible | jquery=div[scroll-target='AppNode4'] td:contains('${value}') |
