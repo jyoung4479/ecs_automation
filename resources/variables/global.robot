@@ -1,15 +1,10 @@
 | *** Variables *** |
 | ${var_SERVICE_ORDER_ID} | 716729 |
-| ${member_id}   | ${EMPTY} |
-| ${account_id}  | ${EMPTY} |
+| ${var_MEMBER_ID} | ${EMPTY} |
+| ${var_ACCOUNT_ID} | ${EMPTY} |
 | ${var_USERNAME} | beverly |
 | ${var_PASSWORD} | password |
 | ${var_BROWSER} | chrome |
 | ${var_WINDOW_NAME} | main |
-| ${var_DEBUG_KW_TOPLEVEL} | Default |
-| ${var_DEBUG_KW_HIGHLEVEL} | Default |
-| ${var_DEBUG_KW_LOWLEVEL} | Default |
-| ${var_DEBUG_KW_UTILITYLEVEL} | Default |
 | ${var_LOG_LEVEL} | WARN |
-| ${var_USE_DEBUG_LOGGING} | false |
 | ${var_URL}     | http://192.168.1.33:2915 |
