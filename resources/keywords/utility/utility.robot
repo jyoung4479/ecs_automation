@@ -8,12 +8,6 @@
 |    | [Arguments] | ${message} | ${level}=INFO |
 |    | Log | ${message} | level=${level} |
 
-| kw Log Test Info |
-|    | ${test_type_message} | Set Variable | Test: ${TEST_NAME} |
-|    | ${url_message} | Set Variable | Service Order Url: ${var_URL}/serviceorderbrowser/${var_SERVICE_ORDER_ID} |
-|    | ${test_info_message} | Catenate | SEPARATOR=\n | ${test_type_message} | ${url_message} |
-|    | kw Log Message | ${test_info_message} | WARN |
-
 | kw Open and Maximize Browser |
 |    | [Arguments] | ${browser}=chrome | ${url}=http://www.google.com |
 |    | ${browserIndex} | Open Browser | ${url} | browser=${browser} |
@@ -27,60 +21,60 @@
 |    | Go To | ${url} |
 
 | kw Wait Until Page Loads |
-|    | [Arguments] | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${timeout}=10 s | ${retry_interval}=2 s |
 |    | Select Window |
-|    | ${error_message} | Set Variable | Failed while waiting for window.jQuery.active == 0 |
-|    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery.active == 0; | error=${error_message} |
-|    | ${error_message} | Set Variable | Failed while waiting for window.jQuery(':animated').length==0; |
-|    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery(':animated').length==0; | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for window.jQuery.active == 0 |
+|    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery.active == 0; | error=${var_CURRENT_ERROR_MESSAGE} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for window.jQuery(':animated').length==0; |
+|    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery(':animated').length==0; | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Page Contains |
-|    | [Arguments] | ${element} | ${text} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${text} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for page to contain text:\t${element}\t${text} |
-|    | Wait Until Page Contains Element | ${element} | ${text} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for page to contain text:\t${element}\t${text} |
+|    | Wait Until Page Contains  | ${text} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Page Contains Element |
-|    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for page to contain element:\t${element} |
-|    | Wait Until Page Contains Element | ${element} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for page to contain element:\t${element} |
+|    | Wait Until Page Contains Element | ${element} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Page Does Not Contain Element |
-|    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for page to not contain element:\t${element} |
-|    | Wait Until Page Does Not Contain Element | ${element} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for page to not contain element:\t${element} |
+|    | Wait Until Page Does Not Contain Element | ${element} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Element Visible |
-|    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for element to be visible:\t${element} |
-|    | Wait Until Element Is Visible | ${element} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for element to be visible:\t${element} |
+|    | Wait Until Element Is Visible | ${element} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Element Not Visible |
-|    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for element to not be visiblet:\t${element} |
-|    | Wait Until Element Is Not Visible | ${element} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for element to not be visiblet:\t${element} |
+|    | Wait Until Element Is Not Visible | ${element} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Element Contains |
-|    | [Arguments] | ${element} | ${text} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${text} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for element to contain text:\t${element}\t${text} |
-|    | Wait Until Element Contains | ${element} | ${text} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for element to contain text:\t${element}\t${text} |
+|    | Wait Until Element Contains | ${element} | ${text} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Element Does Not Contain |
-|    | [Arguments] | ${element} | ${text} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${text} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for element to not contain text:\t${element}\t${text} |
-|    | Wait Until Element Contains | ${element} | ${text} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for element to not contain text:\t${element}\t${text} |
+|    | Wait Until Element Contains | ${element} | ${text} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Wait Until Element Enabled |
-|    | [Arguments] | ${element} | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | [Arguments] | ${element} | ${timeout}=15 s | ${retry_interval}=5 s |
 |    | kw Wait Until Page Loads |
-|    | ${error_message} | Set Variable | Failed while waiting for element to be enabled:\t${element} |
-|    | Wait Until Element Is Enabled | ${element} | error=${error_message} |
+|    | Set Global Variable | ${var_CURRENT_ERROR_MESSAGE} | Failed while waiting for element to be enabled:\t${element} |
+|    | Wait Until Element Is Enabled | ${element} | ${timeout} | error=${var_CURRENT_ERROR_MESSAGE} |
 
 | kw Set Current Window Name |
 |    | ${random_int} | Evaluate | random.randint(0,100) | random |

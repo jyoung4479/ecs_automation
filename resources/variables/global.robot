@@ -8,3 +8,4 @@
 | ${var_WINDOW_NAME} | main |
 | ${var_LOG_LEVEL} | WARN |
 | ${var_URL}     | http://192.168.1.33:2915 |
+| ${var_CURRENT_ERROR_MESSAGE} | ${EMPTY} |
