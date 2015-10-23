@@ -8,63 +8,65 @@
 
 | *** Test Cases *** |
 | Heading |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-title'] |
 |    | ${value} | Set Variable | Account Management |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='am-title'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-title'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Billing Contact |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-billingContact'] |
 |    | ${value} | Set Variable | Russell, Derek |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='am-billingContact'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-billingContact'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Billing Address |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-billingAddress'] |
+|    | # | Billing Address Line 1 |
 |    | ${value} | Set Variable | 5810 Tower St S |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='am-billingAddress'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-billingAddress'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
+|    | # | Billing Address Line 2 |
 |    | ${value} | Set Variable | Rockford, MN \ 55373 |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-billingAddress'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
+|    | # | Billing Address Line 3 |
 |    | ${value} | Set Variable | US |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-billingAddress'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Bank Draft |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-backDraft'] |
 |    | ${value} | Set Variable | Bank Draft |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='am-backDraft'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-backDraft'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Billing Type |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-billingType'] |
 |    | ${value} | Set Variable | Standard |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='am-billingType'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='am-billingType'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Headings |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='am-container'] .k-grid-header |
 |    | @{column_headings} | Create List | Account No | Status | Type | Service Address |
-|    | : FOR | ${heading} | IN | @{column_headings} |
-|    |    | kw Wait Until Element Visible | jquery=[data-test-id='am-container'] .k-grid-header |
-|    |    | kw Wait Until Element Contains | jquery=[data-test-id='am-container'] .k-grid-header | ${heading} |
+|    | kw Verify Grid Column Headings | ${element_locator} | @{column_headings} |
 
 | Grid Column Account No |
-|    | Log | Need to Implement! | level=WARN |
+|    | Log | Need SO with Account Management - Account Number Field value | level=WARN |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='am-container'] .k-grid-content |
 |    | Comment | ${value} | Set Variable | This is Service Order Task Note |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='tasks-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='tasks-container'] td:contains('${value}') | ${value} |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Status |
-|    | Log | Need to Implement! | level=WARN |
+|    | Log | Need SO with Account Management - Status Field value | level=WARN |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='am-container'] .k-grid-content |
 |    | Comment | ${value} | Set Variable | This is Service Order Task Note |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='tasks-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='tasks-container'] td:contains('${value}') | ${value} |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Type |
-|    | Log | Need to Implement! | level=WARN |
+|    | Log | Need SO with Account Management - Account Type Field value | level=WARN |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='am-container'] .k-grid-content |
 |    | Comment | ${value} | Set Variable | This is Service Order Task Note |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='tasks-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='tasks-container'] td:contains('${value}') | ${value} |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Service Address |
-|    | Log | Need to Implement! | level=WARN |
+|    | Log | Need SO with Account Management - Service Address Field value | level=WARN |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='am-container'] .k-grid-content |
 |    | Comment | ${value} | Set Variable | This is Service Order Task Note |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='tasks-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='tasks-container'] td:contains('${value}') | ${value} |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | *** Keywords *** |
 | kw Suite Setup |
@@ -74,7 +76,8 @@
 |    | Set Selenium Implicit Wait | 120 s |
 |    | Set Selenium Timeout | 120 s |
 |    | Set Global Variable | ${var_URL} | http://192.168.1.33:2915 |
-|    | kw Login | ${var_URL} | ${var_USERNAME} | ${var_PASSWORD} |
+|    | Set Global Variable | ${var_SERVICE_ORDER_ID} | 716729 |
+|    | kw Login |
 |    | kw Go To Service Order | ${var_SERVICE_ORDER_ID} |
 
 | kw Suite Teardown |
@@ -86,5 +89,5 @@
 | kw Case Teardown |
 |    | ${screenshot_filename} | Set Variable | C:\\ecs_automation_screenshots\\${TEST_NAME}-${TEST_STATUS}.png |
 |    | Run Keyword If Test Failed | Capture Page Screenshot | filename=${screenshot_filename} |
-|    | Run Keyword If Test Failed | kw Log Message | ${var_CURRENT_ERROR_MESSAGE} | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | LAST ERROR MESSAGE:\t | ${var_ERROR_MESSAGE} | ${SPACE} | level=WARN |
 |    | Run Keyword If Test Failed | kw Log Message | ${screenshot_filename} | level=WARN |

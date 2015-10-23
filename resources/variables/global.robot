@@ -8,4 +8,11 @@
 | ${var_WINDOW_NAME} | main |
 | ${var_LOG_LEVEL} | WARN |
 | ${var_URL}     | http://192.168.1.33:2915 |
-| ${var_CURRENT_ERROR_MESSAGE} | ${EMPTY} |
+| ${var_ERROR_MESSAGE} | default |
+| ${var_KEYWORD_TOP_LEVEL} | default |
+| ${var_KEYWORD_HIGH_LEVEL} | default |
+| ${var_KEYWORD_LOW_LEVEL} | default |
+| ${var_ELEMENT_LOCATOR} | default |
+| ${var_ELEMENT_EXPECTED_VALUE} | default |
+| ${var_ELEMENT_ACTUAL_VALUE} | default |
+| ${var_LOG_MESSAGE} | default |

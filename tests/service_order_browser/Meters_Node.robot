@@ -8,175 +8,175 @@
 
 | *** Test Cases *** |
 | Heading |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-title'] |
 |    | ${value} | Set Variable | Meters |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-title'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-title'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Status |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-status'] |
 |    | ${value} | Set Variable | Active |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-status'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-status'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Number |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-meterNumber-serviceSlot'] |
 |    | ${value} | Set Variable | 91623809, Master |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-meterNumber-serviceSlot'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-meterNumber-serviceSlot'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Last Read Date |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-lastRead'] |
 |    | ${value} | Set Variable | 8/7/15 4:11 PM |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-lastRead'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-lastRead'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Reading Type |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-lastRead'] |
 |    | ${value} | Set Variable | 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-lastRead'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-lastRead'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Pulled For Reading Date |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-lastRead'] |
 |    | ${value} | Set Variable | ?? |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-lastRead'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-lastRead'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | AMR Read Method |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-readMethod'] |
 |    | ${value} | Set Variable | AMR |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-readMethod'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-readMethod'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Book Name |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-book'] |
 |    | ${value} | Set Variable | 17 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-book'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-book'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Book Description |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-book-description'] |
 |    | ${value} | Set Variable | 3700134, Mechanical, ABB |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-book-description'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-book-description'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Book Read Sequence |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-book-readSequence'] |
 |    | ${value} | Set Variable | 36 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-book-readSequence'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-book-readSequence'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Book Cycle |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-book-cycle'] |
 |    | ${value} | Set Variable | 2 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-book-cycle'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-book-cycle'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Manufacturer |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-manufacturer'] |
 |    | ${value} | Set Variable | ABB |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-manufacturer'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-manufacturer'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Multiplier |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-multiplier'] |
 |    | ${value} | Set Variable | 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-multiplier'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-multiplier'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Amps |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-amps'] |
 |    | ${value} | Set Variable | 200 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-amps'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-amps'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Wires |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-wires'] |
 |    | ${value} | Set Variable | 3 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-wires'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-wires'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Volts |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-volts'] |
 |    | ${value} | Set Variable | 240 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-volts'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-volts'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Dials |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-dials'] |
 |    | ${value} | Set Variable | 5 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-dials'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-dials'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Dial Style |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-dialStyle'] |
 |    | ${value} | Set Variable | Cyclomtr |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-dialStyle'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-dialStyle'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Class |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-class'] |
 |    | ${value} | Set Variable | 200 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-class'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-class'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | KSubH |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-kSubH'] |
 |    | ${value} | Set Variable | 7.2 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-kSubH'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-kSubH'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Form |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-form'] |
 |    | ${value} | Set Variable | 2S AMR CL200 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-form'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-form'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Demand Precision |
 |    | Log | Need to Implement! | level=WARN |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='meters-demandPrecision'] |
 |    | Comment | ${value} | Set Variable | Standard |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='meters-demandPrecision'] |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='meters-demandPrecision'] | ${value} |
+|    | Comment | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Headings |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-header |
 |    | @{column_headings} | Create List | Reading Date | Account | Meter | Reading Type | Billed |
 |    | ... | Reader | SM | Rate | Input Method | Date Entered | Entered By |
-|    | : FOR | ${heading} | IN | @{column_headings} |
-|    |    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] .k-grid-header |
-|    |    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] .k-grid-header | ${heading} |
+|    | kw Verify Grid Column Headings | ${element_locator} | @{column_headings} |
 
 | Grid Column Reading Date |
-|    | ${value} | Set Variable | September 26, 2015 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
+|    | ${value} | Set Variable | October 12, 2015 |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Account |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | 12345 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Meter |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | 67890 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Reading Type |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | ReadingType1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Billed |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td .accent-completed |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content \ .accent-completed |
+|    | kw Wait Until Element Visible | ${element_locator} |
 
 | Grid Column Reader |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | Reader 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column SM |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | 2 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Rate |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | RateCode1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Input Method |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | Method1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Date Entered |
-|    | ${value} | Set Variable | October 5, 2015 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
+|    | ${value} | Set Variable | October 19, 2015 |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Entered By |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='meters-container'] .k-grid-content |
 |    | ${value} | Set Variable | UserName1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='meters-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='meters-container'] td:contains('${value}') | ${value} |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | *** Keywords *** |
 | kw Suite Setup |
@@ -186,7 +186,8 @@
 |    | Set Selenium Implicit Wait | 120 s |
 |    | Set Selenium Timeout | 120 s |
 |    | Set Global Variable | ${var_URL} | http://192.168.1.33:2915 |
-|    | kw Login | ${var_URL} | ${var_USERNAME} | ${var_PASSWORD} |
+|    | Set Global Variable | ${var_SERVICE_ORDER_ID} | 716729 |
+|    | kw Login |
 |    | kw Go To Service Order | ${var_SERVICE_ORDER_ID} |
 
 | kw Suite Teardown |
@@ -198,5 +199,5 @@
 | kw Case Teardown |
 |    | ${screenshot_filename} | Set Variable | C:\\ecs_automation_screenshots\\${TEST_NAME}-${TEST_STATUS}.png |
 |    | Run Keyword If Test Failed | Capture Page Screenshot | filename=${screenshot_filename} |
-|    | Run Keyword If Test Failed | kw Log Message | ${var_CURRENT_ERROR_MESSAGE} | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | LAST ERROR MESSAGE:\t | ${var_ERROR_MESSAGE} | ${SPACE} | level=WARN |
 |    | Run Keyword If Test Failed | kw Log Message | ${screenshot_filename} | level=WARN |

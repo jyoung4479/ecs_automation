@@ -8,52 +8,49 @@
 
 | *** Test Cases *** |
 | Heading |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-title'] |
 |    | ${value} | Set Variable | Surge Protectors |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-title'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='sp-title'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
-| Tasks Grid Column Headings |
+| Grid Column Headings |
 |    | @{column_headings} | Create List | Serial Number | Status | Type | Set | Removed |
 |    | ... | Charge | View |
-|    | : FOR | ${heading} | IN | @{column_headings} |
-|    |    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] .k-grid-header |
-|    |    | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] .k-grid-header | ${heading} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-header |
+|    | kw Verify Grid Column Headings | ${element_locator} | @{column_headings} |
 
 | Grid Column Serial Number |
 |    | ${value} | Set Variable | 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Status |
 |    | Log | Need To Implement! | level=WARN |
-|    | Comment | ${value} | Set Variable | Burning |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Type |
 |    | ${value} | Set Variable | HG3 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Set |
 |    | ${value} | Set Variable | August 27, 2015 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Removed |
 |    | Log | Need To Implement! | level=WARN |
-|    | Comment | ${value} | Set Variable | Burning |
-|    | Comment | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | Comment | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | Comment | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | Comment | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column Charge |
 |    | ${value} | Set Variable | 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td:contains('${value}') |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='sp-container'] td:contains('${value}') | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='sp-container'] .k-grid-content |
+|    | kw Verify Grid Contains Value | ${element_locator} | ${value} |
 
 | Grid Column View |
 |    | ${value} | Set Variable | Journal |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] td>button |
+|    | kw Wait Until Element Visible | jquery=[data-test-id='sp-container'] .k-grid-content \ button |
 
 | *** Keywords *** |
 | kw Suite Setup |
@@ -63,7 +60,8 @@
 |    | Set Selenium Implicit Wait | 120 s |
 |    | Set Selenium Timeout | 120 s |
 |    | Set Global Variable | ${var_URL} | http://192.168.1.33:2915 |
-|    | kw Login | ${var_URL} | ${var_USERNAME} | ${var_PASSWORD} |
+|    | Set Global Variable | ${var_SERVICE_ORDER_ID} | 716729 |
+|    | kw Login |
 |    | kw Go To Service Order | ${var_SERVICE_ORDER_ID} |
 
 | kw Suite Teardown |
@@ -75,5 +73,5 @@
 | kw Case Teardown |
 |    | ${screenshot_filename} | Set Variable | C:\\ecs_automation_screenshots\\${TEST_NAME}-${TEST_STATUS}.png |
 |    | Run Keyword If Test Failed | Capture Page Screenshot | filename=${screenshot_filename} |
-|    | Run Keyword If Test Failed | kw Log Message | ${var_CURRENT_ERROR_MESSAGE} | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | LAST ERROR MESSAGE:\t | ${var_ERROR_MESSAGE} | ${SPACE} | level=WARN |
 |    | Run Keyword If Test Failed | kw Log Message | ${screenshot_filename} | level=WARN |

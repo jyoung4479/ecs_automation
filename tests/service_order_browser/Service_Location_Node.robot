@@ -7,54 +7,54 @@
 | Resource       | ../../resources/keywords/login_page/login.robot |
 
 | *** Test Cases *** |
-| Location Heading |
+| Heading |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-title'] |
 |    | ${value} | Set Variable | Service Location |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-title'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-title'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Service Address |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-address'] |
 |    | ${value} | Set Variable | 5810 Tower St S |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-address'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-address'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 |    | ${value} | Set Variable | Rockford, MN \ 55373 |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-address'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 |    | ${value} | Set Variable | US |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-address'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Location Notes |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-notes'] |
 |    | ${value} | Set Variable | This is Address Comment |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-notes'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-notes'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Service Type |
-|    | ${value} | Set Variable | 01 Residential Sales  |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-serviceType'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-serviceType'] | ${value} |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-serviceType'] |
+|    | ${value} | Set Variable | 01 Residential Sales |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Auto Reconnect Account Number |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-autoReconnectAccountNumber'] |
 |    | ${value} | Set Variable | Not Assigned |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-autoReconnectAccountNumber'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-autoReconnectAccountNumber'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Meter Number |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-meterNumber'] |
 |    | ${value} | Set Variable | 91623809, Master |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-meterNumber'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-meterNumber'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Rate Code |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-rateCode'] |
 |    | ${value} | Set Variable | 10 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-rateCode'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-rateCode'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Multiplier |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-multiplier'] |
 |    | ${value} | Set Variable | 1 |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-multiplier'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-multiplier'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | Near Map Number |
+|    | ${element_locator} | Set Variable | jquery=[data-test-id='location-nearMapNumber'] |
 |    | ${value} | Set Variable | 05 22DB0101004W |
-|    | kw Wait Until Element Visible | jquery=[data-test-id='location-nearMapNumber'] |
-|    | kw Wait Until Element Contains | jquery=[data-test-id='location-nearMapNumber'] | ${value} |
+|    | kw Verify Node Contains Value | ${element_locator} | ${value} |
 
 | *** Keywords *** |
 | kw Suite Setup |
@@ -64,7 +64,8 @@
 |    | Set Selenium Implicit Wait | 120 s |
 |    | Set Selenium Timeout | 120 s |
 |    | Set Global Variable | ${var_URL} | http://192.168.1.33:2915 |
-|    | kw Login | ${var_URL} | ${var_USERNAME} | ${var_PASSWORD} |
+|    | Set Global Variable | ${var_SERVICE_ORDER_ID} | 716729 |
+|    | kw Login |
 |    | kw Go To Service Order | ${var_SERVICE_ORDER_ID} |
 
 | kw Suite Teardown |
@@ -76,5 +77,5 @@
 | kw Case Teardown |
 |    | ${screenshot_filename} | Set Variable | C:\\ecs_automation_screenshots\\${TEST_NAME}-${TEST_STATUS}.png |
 |    | Run Keyword If Test Failed | Capture Page Screenshot | filename=${screenshot_filename} |
-|    | Run Keyword If Test Failed | kw Log Message | ${var_CURRENT_ERROR_MESSAGE} | level=WARN |
+|    | Run Keyword If Test Failed | kw Log Message | LAST ERROR MESSAGE:\t | ${var_ERROR_MESSAGE} | ${SPACE} | level=WARN |
 |    | Run Keyword If Test Failed | kw Log Message | ${screenshot_filename} | level=WARN |
