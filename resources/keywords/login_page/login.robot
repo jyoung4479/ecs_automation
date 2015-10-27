@@ -25,3 +25,4 @@
 |    | ${element} | Set Variable | jquery=button:contains('Login') |
 |    | kw Wait Until Element Visible | ${element} |
 |    | kw Click Element | ${element} |
+|    | kw Wait Until Page Loads |

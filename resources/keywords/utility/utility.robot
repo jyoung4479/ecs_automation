@@ -2,6 +2,7 @@
 | Library        | Selenium2Library |
 | Library        | ../../lib/helper.py |
 | Resource       | ../../variables/global.robot |
+| Library        | random |
 
 | *** Keywords *** |
 | kw Log Message |
@@ -22,83 +23,85 @@
 |    | Go To | ${url} |
 
 | kw Wait Until Page Loads |
-|    | [Arguments] | ${timeout}=10 s | ${retry_interval}=2 s |
+|    | [Arguments] | ${timeout}=5 s | ${retry_interval}=2 s |
 |    | Select Window |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for window.jQuery.active == 0 |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for window.jQuery.active == 0 |
 |    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery.active == 0; | ${timeout} | ${var_ERROR_MESSAGE} |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for window.jQuery(':animated').length==0; |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for window.jQuery(':animated').length==0; |
 |    | Wait Until Keyword Succeeds | ${timeout} | ${retry_interval} | Wait for Condition | return window.jQuery(':animated').length==0; | ${timeout} | ${var_ERROR_MESSAGE} |
 
 | kw Wait Until Page Contains |
 |    | [Arguments] | ${value} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Page Contains Text: | ${SPACE} | ${value} | level=WARN |
+|    | kw Log Message | Wait Until Page Contains Text: | ${SPACE} | ${value} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to contain text:\t{value} |
-|    | Wait Until Page Contains | ${value} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to contain text:\t{value} |
+|    | Wait Until Page Contains | ${value} | ${timeout} |
 
 | kw Wait Until Page Contains Element |
 |    | [Arguments] | ${element_locator} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Page Contains Element: | ${element_locator} | ${SPACE} | level=WARN |
+|    | kw Log Message | Wait Until Page Contains Element: | ${element_locator} | ${SPACE} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to contain element:\t${element} |
-|    | Wait Until Page Contains Element | ${element_locator} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to contain element:\t${element} |
+|    | Wait Until Page Contains Element | ${element_locator} | ${timeout} |
 
 | kw Wait Until Page Does Not Contain Element |
 |    | [Arguments] | ${element_locator} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Page Does Not Contain Element: | ${element_locator} | level=WARN |
+|    | kw Log Message | Wait Until Page Does Not Contain Element: | ${element_locator} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to not contain element:\t${element_locator} |
-|    | Wait Until Page Does Not Contain Element | ${element_locator} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for page to not contain element:\t${element_locator} |
+|    | Wait Until Page Does Not Contain Element | ${element_locator} | ${timeout} |
 
 | kw Wait Until Element Visible |
 |    | [Arguments] | ${element_locator} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Element Is Visible: | ${element_locator} | level=WARN |
+|    | kw Log Message | Wait Until Element Is Visible: | ${element_locator} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to be visible:\t${element_locator} |
-|    | Wait Until Element Is Visible | ${element_locator} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to be visible:\t${element_locator} |
+|    | Wait Until Element Is Visible | ${element_locator} | ${timeout} |
 
 | kw Wait Until Element Not Visible |
 |    | [Arguments] | ${element_locator} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Element Is Not Visible: | ${element_locator} | level=WARN |
+|    | kw Log Message | Wait Until Element Is Not Visible: | ${element_locator} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to not be visiblet:\t${element_locator} |
-|    | Wait Until Element Is Not Visible | ${element_locator} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to not be visiblet:\t${element_locator} |
+|    | Wait Until Element Is Not Visible | ${element_locator} | ${timeout} |
 
 | kw Wait Until Element Contains |
 |    | [Arguments] | ${element_locator} | ${value} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Element Contains Text: | ${element_locator} | ${value} | level=WARN |
+|    | kw Log Message | Wait Until Element Contains Text: | ${element_locator} | ${value} |
 |    | kw Wait Until Page Loads |
-|    | ${actual_text_from_element} | Get Text | ${element_locator} |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to contain text:\t${element_locator}\n\tExpected:\t${value}\n\tActual:\t${actual_text_from_element} |
-|    | Wait Until Element Contains | ${element_locator} | ${value} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | ${actual_text_from_element} | Get Text | ${element_locator} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to contain text:\t${element_locator}\n\tExpected:\t${value}\n\tActual:\t${actual_text_from_element} |
+|    | Wait Until Element Contains | ${element_locator} | ${value} | ${timeout} |
 
 | kw Wait Until Element Does Not Contain |
 |    | [Arguments] | ${element_locator} | ${value} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Element Does Not Contain Text: | ${element_locator} | ${value} | level=WARN |
+|    | kw Log Message | Wait Until Element Does Not Contain Text: | ${element_locator} | ${value} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to not contain text:\t${element_locator}\t${value} |
-|    | Wait Until Element Contains | ${element_locator} | ${value} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to not contain text:\t${element_locator}\t${value} |
+|    | Wait Until Element Does Not Contain | ${element_locator} | ${value} | ${timeout} |
 
 | kw Wait Until Element Enabled |
 |    | [Arguments] | ${element_locator} | ${timeout}=15 s | ${retry_interval}=5 s |
-|    | kw Log Message | Wait Until Element Is Enabled: | ${element_locator} | level=WARN |
+|    | kw Log Message | Wait Until Element Is Enabled: | ${element_locator} |
 |    | kw Wait Until Page Loads |
-|    | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to be enabled:\t${element_locator} |
-|    | Wait Until Element Is Enabled | ${element_locator} | ${timeout} | ${var_ERROR_MESSAGE} |
+|    | Comment | Set Global Variable | ${var_ERROR_MESSAGE} | Failed while waiting for element to be enabled:\t${element_locator} |
+|    | Wait Until Element Is Enabled | ${element_locator} | ${timeout} |
 
 | kw Click Element |
 |    | [Arguments] | ${element_locator} |
-|    | kw Log Message | Click Element: | ${element_locator} | level=WARN |
+|    | kw Log Message | Click Element: | ${element_locator} |
 |    | kw Wait Until Page Loads |
 |    | kw Wait Until Element Visible | ${element_locator} |
 |    | Click Element | ${element_locator} |
+|    | kw Wait Until Page Loads |
 
 | kw Input Text |
 |    | [Arguments] | ${element_locator} | ${value} |
-|    | kw Log Message | Input Text Into Element: | ${element_locator} | ${value} | level=WARN |
+|    | kw Log Message | Input Text Into Element: | ${element_locator} | ${value} |
 |    | kw Wait Until Page Loads |
 |    | kw Wait Until Element Visible | ${element_locator} |
 |    | Input Text | ${element_locator} | ${value} |
+|    | kw Wait Until Page Loads |
 
 | kw Set Current Window Name |
 |    | ${random_int} | Evaluate | random.randint(0,100) | random |
@@ -119,6 +122,7 @@
 
 | kw Hide StickyHeader |
 |    | [Arguments] | ${timeout}=2 min | ${retry_interval}=5 s |
+|    | kw Wait Until Page Loads |
 |    | Execute Javascript | window.jQuery("#appStickyHeader").hide() |
 |    | kw Wait Until Element Not Visible | jquery=#appStickyHeader |
 
